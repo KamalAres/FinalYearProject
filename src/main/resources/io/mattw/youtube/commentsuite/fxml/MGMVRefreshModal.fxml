@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<fx:root type="HBox"
+         xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         spacing="10">
+    <VBox spacing="10" HBox.hgrow="ALWAYS">
+        <VBox fx:id="optionsPane" spacing="10">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label style="-fx-font-weight: bold">Refresh style</Label>
+                <ComboBox fx:id="refreshStyle" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label>Grab comments from video(s) in timeframe</Label>
+                <ComboBox fx:id="refreshTimeframe" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label>Grab comments for up to</Label>
+                <ComboBox fx:id="refreshCommentPages" />
+                <Label>page(s) of 100 results per page</Label>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label>Grab comments in order by </Label>
+                <ComboBox fx:id="refreshCommentOrder" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label>Grab replies up to</Label>
+                <ComboBox fx:id="refreshReplyPages" />
+                <Label>page(s) of 100 results per page</Label>
+            </HBox>
+            <HBox fx:id="reviewOption" alignment="CENTER_LEFT" spacing="10">
+                <Label>Grab review comments up to</Label>
+                <ComboBox fx:id="refreshReviewPages" />
+                <Label>page(s)</Label>
+            </HBox>
+        </VBox>
+        <fx:include fx:id="alert" source="AlertLabel.fxml" styleClass="alertWarning"
+                    alignment="CENTER"
+                    text="Warning: this could take a while!" />
+        <VBox fx:id="statusPane" spacing="10">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="endStatus" managed="false" visible="false" fitHeight="24" fitWidth="24" />
+                <ProgressIndicator fx:id="statusIndicator" maxWidth="24" maxHeight="24"/>
+                <Label fx:id="statusStep" styleClass="font18" />
+            </HBox>
+
+            <ProgressBar fx:id="progressBar" progress="0.0" maxWidth="Infinity" />
+            <GridPane fx:id="refreshStatsPane" vgap="10" hgap="20" />
+            <HBox fx:id="warningsPane" alignment="CENTER_RIGHT" managed="false" visible="false">
+                <fx:define>
+                    <ImageView fx:id="expandIcon" fitWidth="30" fitHeight="30" />
+                </fx:define>
+                <fx:include fx:id="warnings" source="AlertLabel.fxml" styleClass="alertWarning"
+                            HBox.hgrow="ALWAYS"
+                            alignment="CENTER"
+                            text="0 message(s)" />
+                <Hyperlink fx:id="expand" graphic="$expandIcon" maxHeight="30" />
+            </HBox>
+        </VBox>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button fx:id="btnClose" styleClass="btnLight" text="Close" />
+            <Button fx:id="btnStart" styleClass="btnPrimary" text="Start" />
+        </HBox>
+    </VBox>
+    <ListView fx:id="errorList" visible="false" managed="false"
+              minWidth="250"
+              styleClass="font12" />
+</fx:root>
